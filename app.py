@@ -26,7 +26,7 @@ st.markdown("""
     }
    .preview-column {
         width: 80%;
-        padding: 70px;
+        padding: 80px;
        
     }
     .custom-text {
