@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import xgboost as xgb
 import pickle
 
 # Custom CSS to ensure full-screen background image and preview column is visible
