@@ -43,13 +43,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def user_input_f():
-    DistanceToSolarNoon = st.sidebar.number_input("Distance to Solar Noon", min_value=-1.56, max_value=2.24, value=0.00, step=0.01)
-    Temperature = st.sidebar.number_input("Temperature", min_value=-2.64, max_value=2.76, value=0.00, step=0.01)
-    WindDirection = st.sidebar.number_input("Wind Direction", min_value=-3.57, max_value=2.59, value=0.00, step=0.01)
-    WindSpeed = st.sidebar.number_input("Wind Speed", min_value=-2.37, max_value=2.67, value=0.00, step=0.01)
-    Humidity = st.sidebar.number_input("Humidity", min_value=-2.81, max_value=2.09, value=0.00, step=0.01)
-    AvgWindSpeed = st.sidebar.number_input("Average Wind Speed", min_value=-1.61, max_value=2.75, value=0.00, step=0.01)
-    AvgPressure = st.sidebar.number_input("Average Pressure", min_value=-2.81, max_value=3.19, value=0.00, step=0.01)
+    DistanceToSolarNoon = st.sidebar.number_input("Distance to Solar Noon", min_value=-1.56, max_value=2.24, value=0.00, step=0.1)
+    Temperature = st.sidebar.number_input("Temperature", min_value=-2.64, max_value=2.76, value=0.00, step=0.1)
+    WindDirection = st.sidebar.number_input("Wind Direction", min_value=-3.57, max_value=2.59, value=0.00, step=0.1)
+    WindSpeed = st.sidebar.number_input("Wind Speed", min_value=-2.37, max_value=2.67, value=0.00, step=0.1)
+    Humidity = st.sidebar.number_input("Humidity", min_value=-2.81, max_value=2.09, value=0.00, step=0.1)
+    AvgWindSpeed = st.sidebar.number_input("Average Wind Speed", min_value=-1.61, max_value=2.75, value=0.00, step=0.1)
+    AvgPressure = st.sidebar.number_input("Average Pressure", min_value=-2.81, max_value=3.19, value=0.00, step=0.1)
     
     SkyCover = st.sidebar.selectbox("Sky Cover Level", [0, 1, 2, 3, 4])
     
