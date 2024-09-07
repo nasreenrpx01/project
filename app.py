@@ -71,6 +71,8 @@ def user_input_f():
         'average-pressure-(period)': AvgPressure,
         **skycover_data
     }
+# Sidebar for user input
+st.sidebar.header('Input Parameters')
 
 data = user_input_f()
 df = pd.DataFrame(data, index=[0])
