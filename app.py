@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-from sklearn.cross_decomposition import PLSRegression
 import pickle
 
 # Custom CSS to ensure full-screen background image and preview column is visible
