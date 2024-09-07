@@ -42,6 +42,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Sidebar for user input
+st.sidebar.header('Input Parameters')
+
 def user_input_f():
     DistanceToSolarNoon = st.sidebar.number_input("Distance to Solar Noon", min_value=-1.56, max_value=2.24, value=0.00, step=0.1)
     Temperature = st.sidebar.number_input("Temperature", min_value=-2.64, max_value=2.76, value=0.00, step=0.1)
