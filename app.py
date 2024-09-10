@@ -105,7 +105,7 @@ def user_input_f():
 
 # Main app logic
 def main():
-    # Initialize the session state
+    # Initialize session state for visibility control
     if 'submitted' not in st.session_state:
         st.session_state.submitted = False
 
@@ -153,4 +153,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
