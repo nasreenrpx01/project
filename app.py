@@ -1,4 +1,4 @@
-import pandas as pd
+iimport pandas as pd
 import streamlit as st
 from sklearn.ensemble import RandomForestRegressor
 import pickle
@@ -119,7 +119,7 @@ if not st.session_state.submit:
     data = user_input_f()
 
     # Submit button to trigger prediction
-    if st.button("Submit", key="submit-btn", help="Click to predict energy generation", css_class="submit-btn"):
+    if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
         st.session_state.data = data  # Store data in session state
         st.session_state.submit = True  # Update state to hide the form after submission
 
