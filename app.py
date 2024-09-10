@@ -7,16 +7,6 @@ import os
 # Custom CSS for vibrant colors and layout
 st.markdown("""
     <style>
-    .main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-image: url('https://spectrum.ieee.org/media-library/image.jpg?id=29665013');
-        background-size: cover;
-        background-position: center;
-        overflow: auto;
-    }
     .input-container {
         background: linear-gradient(135deg, #FF69B4, #8A2BE2); /* Vibrant gradient for input box */
         padding: 20px;
@@ -26,6 +16,7 @@ st.markdown("""
         text-align: center;
         width: 100%;
         max-width: 500px;
+        margin: auto;
     }
     .input-container h2 {
         color: #FFFFFF;
@@ -46,7 +37,6 @@ st.markdown("""
     .prediction-box {
         background: linear-gradient(135deg, #32CD32, #FFD700); /* Vibrant gradient for prediction box */
         padding: 20px;
-        margin-top: 20px;
         border-radius: 15px;
         color: white;
         text-align: center;
@@ -55,19 +45,23 @@ st.markdown("""
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
         width: 100%;
         max-width: 500px;
+        margin: auto;
     }
     .submit-btn {
         background-color: #FF4500; /* Vibrant orange submit button */
         color: white;
         border: none;
-        padding: 8px 16px; /* Reduced padding */
-        font-size: 16px; /* Reduced font size */
+        padding: 10px 20px;
+        font-size: 16px;
         cursor: pointer;
-        border-radius: 8px; /* Smaller border radius */
+        border-radius: 8px;
         margin-top: 15px;
     }
     .submit-btn:hover {
         background-color: #FF6347; /* Lighter orange on hover */
+    }
+    .hidden {
+        display: none;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -76,7 +70,6 @@ st.markdown("""
 def user_input_f():
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
     
-    # Add the heading "Input Parameters"
     st.markdown("<h2>Input Parameters</h2>", unsafe_allow_html=True)
     
     DistanceToSolarNoon = st.number_input("Distance to Solar Noon (degrees)", min_value=-1.56, max_value=2.24, value=0.00, step=0.1)
@@ -115,9 +108,8 @@ if 'submit' not in st.session_state:
     st.session_state.submit = False
 
 if not st.session_state.submit:
-    # Get user inputs
     data = user_input_f()
-
+    
     # Submit button to trigger prediction
     if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
         st.session_state.data = data  # Store data in session state
