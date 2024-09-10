@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 import pickle
 import os
 
-# Custom CSS to ensure the input form is centered and the background is set
+# Custom CSS for styling the form and prediction box
 st.markdown("""
     <style>
     .main {
@@ -16,7 +16,7 @@ st.markdown("""
         background-size: cover;
         background-position: center;
     }
-    .input-container {
+    .input-container, .prediction-box {
         background: rgba(255, 255, 255, 0.8);
         padding: 40px;
         border-radius: 10px;
@@ -25,18 +25,9 @@ st.markdown("""
     }
     .prediction-box {
         margin-top: 20px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        text-align: center;
         font-size: 18px;
         color: #FF33FF;
         font-weight: bold;
-    }
-    .custom-text {
-        font-size: 16px;
-        font-weight: bold;
-        margin: 5px 0;
     }
     .submit-btn {
         background-color: #4CAF50;
@@ -56,7 +47,9 @@ st.markdown("""
 # Function to take user inputs
 def user_input_f():
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
-    st.markdown("<h2>Enter Environmental Data</h2>")
+    
+    # Add the heading "Input Parameters"
+    st.markdown("<h2>Input Parameters</h2>", unsafe_allow_html=True)
     
     DistanceToSolarNoon = st.number_input("Distance to Solar Noon (degrees)", min_value=-1.56, max_value=2.24, value=0.00, step=0.1)
     Temperature = st.number_input("Temperature (°C)", min_value=-2.64, max_value=2.76, value=0.00, step=0.1)
@@ -90,15 +83,23 @@ def user_input_f():
         **skycover_data
     }
 
-# Display input parameters and submit button
-with st.container():
+# Flag to track if submit has been clicked
+submit = False
+
+# Display input parameters and submit button initially
+if 'submit' not in st.session_state:
+    st.session_state.submit = False
+
+if not st.session_state.submit:
+    # Get user inputs
     data = user_input_f()
 
-    # Submit button
-    submit = st.button("Submit", key="submit-btn", help="Click to predict energy generation")
+    # Submit button to trigger prediction
+    if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
+        st.session_state.submit = True  # Update state to hide the form after submission
 
-# When Submit button is clicked, display prediction box
-if submit:
+# Once submit is clicked, the form disappears and prediction box appears
+if st.session_state.submit:
     df = pd.DataFrame(data, index=[0])
 
     # Check if model file exists
@@ -122,4 +123,3 @@ if submit:
                 st.error(f"Error in prediction: {e}")
     else:
         st.error(f"Model file '{model_file}' not found. Please upload the model.")
-
