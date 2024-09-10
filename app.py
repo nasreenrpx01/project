@@ -18,7 +18,7 @@ st.markdown("""
         align-items: center;
         height: 100vh; /* Full viewport height */
         width: 100vw; /* Full viewport width */
-        background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U=');  /* Example URL */
+        background-image: url('https://spectrum.ieee.org/media-library/image.jpg?id=29665013');  /* Example URL */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
