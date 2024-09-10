@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 import pickle
 import os
 
-# Custom CSS for styling the form and prediction box
+# Custom CSS for styling the form and prediction box with vibrant colors
 st.markdown("""
     <style>
     .main {
@@ -16,30 +16,51 @@ st.markdown("""
         background-size: cover;
         background-position: center;
     }
-    .input-container, .prediction-box {
-        background: rgba(255, 255, 255, 0.8);
+    .input-container {
+        background: linear-gradient(135deg, #FF69B4, #8A2BE2); /* Vibrant gradient for input box */
         padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        color: white;
         text-align: center;
     }
-    .prediction-box {
-        margin-top: 20px;
-        font-size: 18px;
-        color: #FF33FF;
+    .input-container h2 {
+        color: #FFFFFF;
+        font-size: 28px;
         font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .stNumberInput label {
+        font-weight: bold;
+        font-size: 16px;
+        color: #FFFACD; /* Light yellow text for labels */
+    }
+    .stNumberInput input {
+        border-radius: 8px;
+        border: 2px solid #FFF; /* White border around inputs */
+    }
+    .prediction-box {
+        background: linear-gradient(135deg, #32CD32, #FFD700); /* Vibrant gradient for prediction box */
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 15px;
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
     }
     .submit-btn {
-        background-color: #4CAF50;
+        background-color: #FF4500; /* Vibrant orange submit button */
         color: white;
         border: none;
         padding: 10px 20px;
-        font-size: 16px;
+        font-size: 18px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 10px;
     }
     .submit-btn:hover {
-        background-color: #45a049;
+        background-color: #FF6347; /* Lighter orange on hover */
     }
     </style>
 """, unsafe_allow_html=True)
@@ -114,7 +135,7 @@ if st.session_state.submit:
                 # Convert kilowatts to joules (3600 seconds in an hour)
                 energy_in_joules = prediction[0] * 1000 * 3600
                 
-                # Display the prediction result
+                # Display the prediction result with vibrant colors
                 st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
                 st.markdown(f"<strong>Predicted Power Generation:</strong> {prediction[0]:.2f} kW")
                 st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J")
