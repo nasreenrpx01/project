@@ -103,43 +103,55 @@ def user_input_f():
         **skycover_data
     }
 
-# Display input parameters and submit button
-if 'submit' not in st.session_state:
-    st.session_state.submit = False
+# Main app logic
+def main():
+    # Initialize the submit state
+    if 'submitted' not in st.session_state:
+        st.session_state.submitted = False
 
-if not st.session_state.submit:
-    data = user_input_f()
-    
-    # Submit button to trigger prediction
-    if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
-        st.session_state.data = data  # Store data in session state
-        st.session_state.submit = True  # Update state to hide the form after submission
+    if not st.session_state.submitted:
+        # Display input form
+        data = user_input_f()
+        
+        # Submit button to trigger prediction
+        if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
+            st.session_state.data = data  # Store data in session state
+            st.session_state.submitted = True  # Set state to hide the form and show predictions
 
-# Display prediction results after submission
-if st.session_state.submit:
-    st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
-    
-    # Create DataFrame from the stored data
-    df = pd.DataFrame(st.session_state.data, index=[0])
+    if st.session_state.submitted:
+        # Hide the input form
+        st.markdown('<div class="hidden">', unsafe_allow_html=True)
+        st.markdown('<div class="hidden">', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Display prediction results
+        st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
+        
+        # Create DataFrame from the stored data
+        df = pd.DataFrame(st.session_state.data, index=[0])
 
-    # Check if model file exists
-    model_file = 'Finalized_model.pkl'
-    if os.path.exists(model_file):
-        with st.spinner('Making prediction...'):
-            try:
-                # Load the pre-trained model
-                loaded_model = pickle.load(open(model_file, 'rb'))
-                prediction = loaded_model.predict(df)
-                
-                # Convert kilowatts to joules (3600 seconds in an hour)
-                energy_in_joules = prediction[0] * 1000 * 3600
-                
-                # Display the prediction result with vibrant colors
-                st.markdown(f"<strong>Predicted Power Generation:</strong> {prediction[0]:.2f} kW", unsafe_allow_html=True)
-                st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J", unsafe_allow_html=True)
-            except Exception as e:
-                st.error(f"Error in prediction: {e}")
-    else:
-        st.error(f"Model file '{model_file}' not found. Please upload the model.")
-    
-    st.markdown('</div>', unsafe_allow_html=True)
+        # Check if model file exists
+        model_file = 'Finalized_model.pkl'
+        if os.path.exists(model_file):
+            with st.spinner('Making prediction...'):
+                try:
+                    # Load the pre-trained model
+                    loaded_model = pickle.load(open(model_file, 'rb'))
+                    prediction = loaded_model.predict(df)
+                    
+                    # Convert kilowatts to joules (3600 seconds in an hour)
+                    energy_in_joules = prediction[0] * 1000 * 3600
+                    
+                    # Display the prediction result with vibrant colors
+                    st.markdown(f"<strong>Predicted Power Generation:</strong> {prediction[0]:.2f} kW", unsafe_allow_html=True)
+                    st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J", unsafe_allow_html=True)
+                except Exception as e:
+                    st.error(f"Error in prediction: {e}")
+        else:
+            st.error(f"Model file '{model_file}' not found. Please upload the model.")
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    main()
