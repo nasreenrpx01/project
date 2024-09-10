@@ -105,25 +105,23 @@ def user_input_f():
 
 # Main app logic
 def main():
-    # Initialize the submit state
+    # Initialize the session state
     if 'submitted' not in st.session_state:
         st.session_state.submitted = False
 
     if not st.session_state.submitted:
         # Display input form
-        data = user_input_f()
-        
-        # Submit button to trigger prediction
-        if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
-            st.session_state.data = data  # Store data in session state
-            st.session_state.submitted = True  # Set state to hide the form and show predictions
+        input_container = st.empty()
+        with input_container:
+            data = user_input_f()
+            # Submit button to trigger prediction
+            if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
+                st.session_state.data = data  # Store data in session state
+                st.session_state.submitted = True  # Set state to hide the form and show predictions
 
     if st.session_state.submitted:
         # Hide the input form
-        st.markdown('<div class="hidden">', unsafe_allow_html=True)
-        st.markdown('<div class="hidden">', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+        st.empty()  # Clear the input container
         
         # Display prediction results
         st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
@@ -155,3 +153,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
