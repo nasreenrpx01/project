@@ -65,10 +65,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Flag to track if submit has been clicked
-if 'submit' not in st.session_state:
-    st.session_state.submit = False
-
 # Function to take user inputs
 def user_input_f():
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
@@ -108,6 +104,10 @@ def user_input_f():
         **skycover_data
     }
 
+# Flag to track if submit has been clicked
+if 'submit' not in st.session_state:
+    st.session_state.submit = False
+
 # Display input parameters and submit button initially
 if not st.session_state.submit:
     # Get user inputs
@@ -120,6 +120,9 @@ if not st.session_state.submit:
 
 # Once submit is clicked, the form disappears and prediction box appears
 if st.session_state.submit:
+    st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
+    
+    # Create DataFrame from the stored data
     df = pd.DataFrame(st.session_state.data, index=[0])
 
     # Check if model file exists
@@ -135,11 +138,11 @@ if st.session_state.submit:
                 energy_in_joules = prediction[0] * 1000 * 3600
                 
                 # Display the prediction result with vibrant colors
-                st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
-                st.markdown(f"<strong>Predicted Power Generation:</strong> {prediction[0]:.2f} kW")
-                st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J")
-                st.markdown('</div>', unsafe_allow_html=True)
+                st.markdown(f"<strong>Predicted Power Generation:</strong> {prediction[0]:.2f} kW", unsafe_allow_html=True)
+                st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J", unsafe_allow_html=True)
             except Exception as e:
                 st.error(f"Error in prediction: {e}")
     else:
         st.error(f"Model file '{model_file}' not found. Please upload the model.")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
