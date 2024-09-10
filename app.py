@@ -15,32 +15,33 @@ st.markdown("""
         background-image: url('https://spectrum.ieee.org/media-library/image.jpg?id=29665013');
         background-size: cover;
         background-position: center;
-        overflow: hidden;
+        overflow: auto;
     }
     .input-container {
         background: linear-gradient(135deg, #FF69B4, #8A2BE2); /* Vibrant gradient for input box */
-        padding: 40px;
+        padding: 20px;
         border-radius: 15px;
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
         color: white;
         text-align: center;
         width: 100%;
-        max-width: 600px;
+        max-width: 500px;
     }
     .input-container h2 {
         color: #FFFFFF;
-        font-size: 28px;
+        font-size: 24px;
         font-weight: bold;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
     .stNumberInput label {
         font-weight: bold;
-        font-size: 16px;
+        font-size: 14px;
         color: #FFFACD; /* Light yellow text for labels */
     }
     .stNumberInput input {
         border-radius: 8px;
         border: 2px solid #FFF; /* White border around inputs */
+        font-size: 14px;
     }
     .prediction-box {
         background: linear-gradient(135deg, #32CD32, #FFD700); /* Vibrant gradient for prediction box */
@@ -53,17 +54,17 @@ st.markdown("""
         font-weight: bold;
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
         width: 100%;
-        max-width: 600px;
+        max-width: 500px;
     }
     .submit-btn {
         background-color: #FF4500; /* Vibrant orange submit button */
         color: white;
         border: none;
-        padding: 10px 20px;
-        font-size: 18px;
+        padding: 8px 16px; /* Reduced padding */
+        font-size: 16px; /* Reduced font size */
         cursor: pointer;
-        border-radius: 10px;
-        margin-top: 20px;
+        border-radius: 8px; /* Smaller border radius */
+        margin-top: 15px;
     }
     .submit-btn:hover {
         background-color: #FF6347; /* Lighter orange on hover */
@@ -118,7 +119,7 @@ if not st.session_state.submit:
     data = user_input_f()
 
     # Submit button to trigger prediction
-    if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
+    if st.button("Submit", key="submit-btn", help="Click to predict energy generation", css_class="submit-btn"):
         st.session_state.data = data  # Store data in session state
         st.session_state.submit = True  # Update state to hide the form after submission
 
