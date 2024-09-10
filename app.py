@@ -66,7 +66,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Function to take user inputs
 def user_input_f():
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
     
@@ -103,7 +102,6 @@ def user_input_f():
         **skycover_data
     }
 
-# Main app logic
 def main():
     # Initialize session state for visibility control
     if 'submitted' not in st.session_state:
@@ -111,17 +109,16 @@ def main():
 
     if not st.session_state.submitted:
         # Display input form
-        input_container = st.empty()
-        with input_container:
-            data = user_input_f()
-            # Submit button to trigger prediction
-            if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
-                st.session_state.data = data  # Store data in session state
-                st.session_state.submitted = True  # Set state to hide the form and show predictions
+        data = user_input_f()
+        
+        # Submit button to trigger prediction
+        if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
+            st.session_state.data = data  # Store data in session state
+            st.session_state.submitted = True  # Set state to hide the form and show predictions
 
     if st.session_state.submitted:
         # Hide the input form
-        st.empty()  # Clear the input container
+        st.markdown('<style>.input-container {display: none;}</style>', unsafe_allow_html=True)
         
         # Display prediction results
         st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
