@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 import pickle
 import os
 
-# Custom CSS for styling the form and prediction box with vibrant colors
+# Custom CSS for vibrant colors and layout
 st.markdown("""
     <style>
     .main {
@@ -65,6 +65,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Flag to track if submit has been clicked
+if 'submit' not in st.session_state:
+    st.session_state.submit = False
+
 # Function to take user inputs
 def user_input_f():
     st.markdown('<div class="input-container">', unsafe_allow_html=True)
@@ -104,24 +108,19 @@ def user_input_f():
         **skycover_data
     }
 
-# Flag to track if submit has been clicked
-submit = False
-
 # Display input parameters and submit button initially
-if 'submit' not in st.session_state:
-    st.session_state.submit = False
-
 if not st.session_state.submit:
     # Get user inputs
     data = user_input_f()
 
     # Submit button to trigger prediction
     if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
+        st.session_state.data = data  # Store data in session state
         st.session_state.submit = True  # Update state to hide the form after submission
 
 # Once submit is clicked, the form disappears and prediction box appears
 if st.session_state.submit:
-    df = pd.DataFrame(data, index=[0])
+    df = pd.DataFrame(st.session_state.data, index=[0])
 
     # Check if model file exists
     model_file = 'Finalized_model.pkl'
