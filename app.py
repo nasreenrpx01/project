@@ -15,6 +15,7 @@ st.markdown("""
         background-image: url('https://spectrum.ieee.org/media-library/image.jpg?id=29665013');
         background-size: cover;
         background-position: center;
+        overflow: hidden;
     }
     .input-container {
         background: linear-gradient(135deg, #FF69B4, #8A2BE2); /* Vibrant gradient for input box */
@@ -23,6 +24,8 @@ st.markdown("""
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
         color: white;
         text-align: center;
+        width: 100%;
+        max-width: 600px;
     }
     .input-container h2 {
         color: #FFFFFF;
@@ -49,6 +52,8 @@ st.markdown("""
         font-size: 20px;
         font-weight: bold;
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 600px;
     }
     .submit-btn {
         background-color: #FF4500; /* Vibrant orange submit button */
@@ -58,6 +63,7 @@ st.markdown("""
         font-size: 18px;
         cursor: pointer;
         border-radius: 10px;
+        margin-top: 20px;
     }
     .submit-btn:hover {
         background-color: #FF6347; /* Lighter orange on hover */
@@ -80,10 +86,8 @@ def user_input_f():
     AvgWindSpeed = st.number_input("Average Wind Speed (m/s)", min_value=-1.61, max_value=2.75, value=0.00, step=0.1)
     AvgPressure = st.number_input("Average Pressure (hPa)", min_value=-2.81, max_value=3.19, value=0.00, step=0.1)
     
-    # User inputs the sky cover level manually between 0 and 4
     SkyCover = st.number_input("Sky Cover Level (0-4)", min_value=0, max_value=4, value=0, step=1)
     
-    # Creating the feature vector
     skycover_data = {
         'sky-cover_0': 1 if SkyCover == 0 else 0,
         'sky-cover_1': 1 if SkyCover == 1 else 0,
@@ -92,7 +96,8 @@ def user_input_f():
         'sky-cover_4': 1 if SkyCover == 4 else 0
     }
     
-    # Return all data as a dictionary
+    st.markdown('</div>', unsafe_allow_html=True)
+    
     return {
         'distance-to-solar-noon': DistanceToSolarNoon,
         'temperature': Temperature,
@@ -104,11 +109,10 @@ def user_input_f():
         **skycover_data
     }
 
-# Flag to track if submit has been clicked
+# Display input parameters and submit button
 if 'submit' not in st.session_state:
     st.session_state.submit = False
 
-# Display input parameters and submit button initially
 if not st.session_state.submit:
     # Get user inputs
     data = user_input_f()
@@ -118,7 +122,7 @@ if not st.session_state.submit:
         st.session_state.data = data  # Store data in session state
         st.session_state.submit = True  # Update state to hide the form after submission
 
-# Once submit is clicked, the form disappears and prediction box appears
+# Display prediction results after submission
 if st.session_state.submit:
     st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
     
