@@ -92,7 +92,7 @@ def show_prediction_box():
     energy_in_joules = prediction[0] * 1000 * 3600
 
     st.markdown('<div class="main"><div class="content"><div class="main-container">', unsafe_allow_html=True)
-    st.header("Prediction\n Power Generated in 3 hours")
+    st.header("Prediction Power Generated in 3 hours")
     st.write(f"Predicted Power Generation: {prediction[0]:.2f} kW")
     st.write(f"Prediced Energy Produced: {energy_in_joules:.2f} Joules")
 
