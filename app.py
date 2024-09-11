@@ -73,6 +73,7 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+st.markdown(f"<div style='background-image: url('https://wallpapers.com/images/hd/black-and-white-solar-panels-jxkip6hmb8k7l2wx.jpg'); background-size: cover;'>...</div>", unsafe_allow_html=True)
 
 # Function to display input form
 def show_input_form():
