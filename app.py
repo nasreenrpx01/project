@@ -27,12 +27,12 @@ st.markdown("""
     }
     .input-form, .prediction-box {
         background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for the form */
-        padding: 30px;
+        padding: 10px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         text-align: center;
-        width: 100%;
-        max-width: 500px;
+        width: 70%;
+        max-width: 100px;
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
