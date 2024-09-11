@@ -11,6 +11,12 @@ if 'data' not in st.session_state:
 # Custom CSS for background image and centering
 st.markdown("""
     <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
     .main {
         display: flex;
         justify-content: center;
@@ -22,6 +28,7 @@ st.markdown("""
         background-position: center;
         background-repeat: no-repeat;
         position: relative;
+        z-index: 1; /* Ensures that the background image stays behind */
     }
     .main-container {
         display: flex;
@@ -29,12 +36,14 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
         width: 300px; /* Adjust width as needed */
         box-sizing: border-box;
+        position: relative;
+        z-index: 2; /* Ensures that the content appears above the background image */
     }
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
-        padding: 20px; /* Padding inside the form container */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
