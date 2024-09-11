@@ -34,12 +34,12 @@ st.markdown("""
         justify-content: center;
         align-items: center;
         height: 100vh; /* Full height of the screen */
-        padding: 20px;
+        padding: 70px;
         background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         max-width: 500px; /* Restrict width of form and prediction box */
-        width: 100%;
+        width: 80%;
         margin: 0;
         position: absolute;
         top: 50%;
