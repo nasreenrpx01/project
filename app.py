@@ -26,13 +26,17 @@ st.markdown("""
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 80vh; /* Reduced height to fit within the viewport */
+        height: 80vh; /* Adjust height to fit within the viewport */
         width: 80vw; /* Adjust width to fit within the viewport */
         background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 20px;
-        position: relative;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1; /* Ensure it appears above the background */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
