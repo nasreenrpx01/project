@@ -8,32 +8,29 @@ if 'show_prediction' not in st.session_state:
 if 'data' not in st.session_state:
     st.session_state.data = None
 
-# Custom CSS for background image and button styling
+# Custom CSS for background image and styling of input and prediction boxes
 st.markdown("""
     <style>
+    body {
+        background-image: url('https://static.vecteezy.com/system/resources/thumbnails/025/496/040/small/electric-guitar-ignites-stage-with-modern-technology-and-amplified-sound-generated-by-ai-free-photo.jpg'); /* Replace with your image URL */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
     .main {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         width: 100vw;
-        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKxkyJh_Uz_1H1YEA93-q7tmHHBNEQAKvFqw&s'); /* Replace with your image URL */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        background: none;
     }
     .input-form, .prediction-box {
-        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for the form */
+        padding: 30px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         text-align: center;
-    }
-    .input-form {
-        width: 100%;
-        max-width: 500px;
-    }
-    .prediction-box {
         width: 100%;
         max-width: 500px;
     }
