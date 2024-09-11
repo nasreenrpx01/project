@@ -8,7 +8,7 @@ import os
 st.markdown("""
     <style>
     .input-container {
-        background: linear-gradient(135deg, #FF69B4, #8A2BE2); /* Vibrant gradient for input box */
+        background: linear-gradient(135deg, #FF69B4, #8A2BE2);
         padding: 20px;
         border-radius: 15px;
         box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
@@ -27,15 +27,15 @@ st.markdown("""
     .stNumberInput label {
         font-weight: bold;
         font-size: 14px;
-        color: #FFFACD; /* Light yellow text for labels */
+        color: #FFFACD;
     }
     .stNumberInput input {
         border-radius: 8px;
-        border: 2px solid #FFF; /* White border around inputs */
+        border: 2px solid #FFF;
         font-size: 14px;
     }
     .prediction-box {
-        background: linear-gradient(135deg, #32CD32, #FFD700); /* Vibrant gradient for prediction box */
+        background: linear-gradient(135deg, #32CD32, #FFD700);
         padding: 20px;
         border-radius: 15px;
         color: white;
@@ -48,7 +48,7 @@ st.markdown("""
         margin: auto;
     }
     .submit-btn, .back-btn {
-        background-color: #FF4500; /* Vibrant orange submit button */
+        background-color: #FF4500;
         color: white;
         border: none;
         padding: 10px 20px;
@@ -58,13 +58,13 @@ st.markdown("""
         margin-top: 15px;
     }
     .submit-btn:hover, .back-btn:hover {
-        background-color: #FF6347; /* Lighter orange on hover */
+        background-color: #FF6347;
     }
     .back-btn {
-        background-color: #1E90FF; /* Vibrant blue back button */
+        background-color: #1E90FF;
     }
     .back-btn:hover {
-        background-color: #4682B4; /* Lighter blue on hover */
+        background-color: #4682B4;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -110,51 +110,53 @@ def main():
     if 'submitted' not in st.session_state:
         st.session_state.submitted = False
 
-    if not st.session_state.submitted:
-        # Display input form
-        data = user_input_f()
-        
-        # Submit button to trigger prediction
-        if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
-            st.session_state.data = data  # Store data in session state
-            st.session_state.submitted = True  # Set state to hide the form and show predictions
-
+    # Wrap UI logic in a single click action to avoid needing multiple clicks
     if st.session_state.submitted:
-        # Hide the input form by checking session state
-        if not st.session_state.submitted:
-            st.markdown('<style>.input-container {display: none;}</style>', unsafe_allow_html=True)
-        
-        # Display prediction results
-        st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
-        
-        # Create DataFrame from the stored data
-        df = pd.DataFrame(st.session_state.data, index=[0])
+        show_prediction()  # Call prediction box directly if already submitted
+    else:
+        show_input_form()
 
-        # Check if model file exists
-        model_file = 'Finalized_model.pkl'
-        if os.path.exists(model_file):
-            with st.spinner('Making prediction...'):
-                try:
-                    # Load the pre-trained model
-                    loaded_model = pickle.load(open(model_file, 'rb'))
-                    prediction = loaded_model.predict(df)
-                    
-                    # Convert kilowatts to joules (3600 seconds in an hour)
-                    energy_in_joules = prediction[0] * 1000 * 3600
-                    
-                    # Display the prediction result with vibrant colors
-                    st.markdown(f"<strong>Predicted Power Generation:</strong> {prediction[0]:.2f} kW", unsafe_allow_html=True)
-                    st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J", unsafe_allow_html=True)
-                    
-                    # Add back button to return to input form
-                    if st.button("Back", key="back-btn", help="Return to input form"):
-                        st.session_state.submitted = False
-                except Exception as e:
-                    st.error(f"Error in prediction: {e}")
-        else:
-            st.error(f"Model file '{model_file}' not found. Please upload the model.")
-        
-        st.markdown('</div>', unsafe_allow_html=True)
+def show_input_form():
+    data = user_input_f()
+    
+    # Submit button to trigger prediction
+    if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
+        st.session_state.data = data  # Store data in session state
+        st.session_state.submitted = True
+        st.experimental_rerun()  # Refresh the page immediately to show prediction box
+
+def show_prediction():
+    st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
+    
+    # Create DataFrame from the stored data
+    df = pd.DataFrame(st.session_state.data, index=[0])
+
+    # Check if model file exists
+    model_file = 'Finalized_model.pkl'
+    if os.path.exists(model_file):
+        with st.spinner('Making prediction...'):
+            try:
+                # Load the pre-trained model
+                loaded_model = pickle.load(open(model_file, 'rb'))
+                prediction = loaded_model.predict(df)
+                
+                # Convert kilowatts to joules (3600 seconds in an hour)
+                energy_in_joules = prediction[0] * 1000 * 3600
+                
+                # Display the prediction result
+                st.markdown(f"<strong>Predicted Power Generation:</strong> {prediction[0]:.2f} kW", unsafe_allow_html=True)
+                st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J", unsafe_allow_html=True)
+                
+                # Add back button to return to input form
+                if st.button("Back", key="back-btn", help="Return to input form"):
+                    st.session_state.submitted = False
+                    st.experimental_rerun()  # Refresh page to return to input form
+            except Exception as e:
+                st.error(f"Error during prediction: {str(e)}")
+    else:
+        st.error(f"Model file '{model_file}' not found. Please upload the model.")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
