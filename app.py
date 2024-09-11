@@ -40,6 +40,9 @@ st.markdown("""
         box-sizing: border-box;
         
     }
+    .input-form-container {
+        margin-top: 50px; /* Add space above the input form */
+    }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
         color: white;
