@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 import pickle
 
+# Initialize session state for showing prediction or input form
+if 'show_prediction' not in st.session_state:
+    st.session_state.show_prediction = False
+if 'data' not in st.session_state:
+    st.session_state.data = None
+
 # Function to display input form
 def show_input_form():
     st.header("Input Parameters")
@@ -21,9 +27,8 @@ def show_input_form():
         # Submit button inside the form
         submitted = st.form_submit_button("Submit")
 
-        # If the form is submitted, switch to prediction mode
+        # If the form is submitted, save data and switch to prediction mode
         if submitted:
-            st.session_state.show_prediction = True
             st.session_state.data = {
                 'distance-to-solar-noon': distance_to_solar_noon,
                 'temperature': temperature,
@@ -38,6 +43,7 @@ def show_input_form():
                 'sky-cover_3': 1 if sky_cover == 3 else 0,
                 'sky-cover_4': 1 if sky_cover == 4 else 0
             }
+            st.session_state.show_prediction = True
 
 # Function to display the prediction box
 def show_prediction_box():
@@ -61,10 +67,6 @@ def show_prediction_box():
 
 # Main function to manage app state
 def main():
-    # Initialize session state for showing prediction
-    if 'show_prediction' not in st.session_state:
-        st.session_state.show_prediction = False
-
     # Check whether to show the input form or the prediction box
     if st.session_state.show_prediction:
         show_prediction_box()
@@ -73,3 +75,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
