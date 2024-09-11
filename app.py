@@ -35,7 +35,7 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        position: absolute;
+        
         transform: translate(-50%, -50%);
         z-index: 1; /* Ensure it appears above the background */
     }
