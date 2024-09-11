@@ -20,21 +20,23 @@ st.markdown("""
         margin: 0;
         padding: 0;
     }
-    .main {
+    /* Reduce the space above and below the input form */
+    .main-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Full screen height */
+        height: 100vh; /* Take full height of the screen */
         padding: 0;
         margin: 0;
     }
     .input-form, .prediction-box {
-        background-color: rgba(255, 255, 255, 0.8); /* Transparent background for the form */
+        background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px; /* Restrict width of input form */
         width: 100%;
-        max-width: 400px;
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
@@ -42,8 +44,6 @@ st.markdown("""
         border: none;
         padding: 8px 16px;
         text-align: center;
-        text-decoration: none;
-        display: inline-block;
         font-size: 14px;
         margin-top: 10px;
         cursor: pointer;
@@ -57,7 +57,7 @@ st.markdown("""
 
 # Function to display input form
 def show_input_form():
-    st.markdown('<div class="main"><div class="input-form">', unsafe_allow_html=True)
+    st.markdown('<div class="main-container">', unsafe_allow_html=True)
     st.header("Input Parameters")
 
     # Create a form to collect user inputs
@@ -73,7 +73,7 @@ def show_input_form():
         sky_cover = st.selectbox("Sky Cover Level", [0, 1, 2, 3, 4])
 
         # Submit button inside the form
-        submitted = st.form_submit_button("Submit")
+        submitted = st.form_submit_button("Submit", key="submit-btn")
 
         if submitted:
             st.session_state.data = {
@@ -93,7 +93,7 @@ def show_input_form():
             # After submitting, show the prediction box
             st.session_state.show_prediction = True
 
-    st.markdown('</div></div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Function to display the prediction box
 def show_prediction_box():
@@ -107,7 +107,7 @@ def show_prediction_box():
     prediction = loaded_model.predict(df)
     energy_in_joules = prediction[0] * 1000 * 3600
 
-    st.markdown('<div class="main"><div class="prediction-box">', unsafe_allow_html=True)
+    st.markdown('<div class="main-container">', unsafe_allow_html=True)
     st.header("Prediction")
     st.write(f"Predicted Power Generation: {prediction[0]:.2f} kW")
     st.write(f"Energy Produced: {energy_in_joules:.2f} Joules")
@@ -115,7 +115,7 @@ def show_prediction_box():
     # Back button to reset the app state and return to the input form
     if st.button("Back to Input Form", key="back-btn"):
         st.session_state.show_prediction = False
-    st.markdown('</div></div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Main function to manage app state
 def main():
