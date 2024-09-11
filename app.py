@@ -12,9 +12,10 @@ if 'data' not in st.session_state:
 st.markdown("""
     <style>
     body {
-        background-image: url('https://static.vecteezy.com/system/resources/thumbnails/025/496/040/small/electric-guitar-ignites-stage-with-modern-technology-and-amplified-sound-generated-by-ai-free-photo.jpg'); /* Replace with your image URL */
+        background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20231004/pngtree-illustrated-3d-render-of-solar-cell-industrial-technology-harnessing-clean-energy-image_13558074.png'); /* Replace with your image URL */
         background-size: cover;
         background-position: center;
+        background-repeat: no-repeat;
         background-attachment: fixed;
     }
     .main {
@@ -22,8 +23,7 @@ st.markdown("""
         justify-content: center;
         align-items: center;
         height: 100vh;
-        width: 100vw;
-        background: none;
+        background: none;  /* Remove any additional background color */
     }
     .input-form, .prediction-box {
         background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for the form */
