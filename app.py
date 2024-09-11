@@ -11,16 +11,23 @@ if 'data' not in st.session_state:
 # Custom CSS for background image and centering the input and prediction boxes
 st.markdown("""
     <style>
-    body {
-        background-image: url('https://wallpapers.com/images/hd/black-and-white-solar-panels-jxkip6hmb8k7l2wx.jpg'); /* Replace with your image URL */
+     body {
+        height: 100%;
+        margin: 0;
+        padding: ;
+        overflow: hidden;
+    }
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full viewport height */
+        width: 100vw; /* Full viewport width */
+        background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U=');  /* Example URL */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        background-attachment: fixed;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
+        position: relative; /* Establishes a stacking context */
     .main-container {
         display: flex;
         flex-direction: column;
