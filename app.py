@@ -47,7 +47,7 @@ st.markdown("""
         max-width: 500px;
         margin: auto;
     }
-    .submit-btn {
+    .submit-btn, .back-btn {
         background-color: #FF4500; /* Vibrant orange submit button */
         color: white;
         border: none;
@@ -57,18 +57,11 @@ st.markdown("""
         border-radius: 8px;
         margin-top: 15px;
     }
-    .submit-btn:hover {
+    .submit-btn:hover, .back-btn:hover {
         background-color: #FF6347; /* Lighter orange on hover */
     }
     .back-btn {
         background-color: #1E90FF; /* Vibrant blue back button */
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 8px;
-        margin-top: 15px;
     }
     .back-btn:hover {
         background-color: #4682B4; /* Lighter blue on hover */
@@ -122,8 +115,7 @@ def main():
         data = user_input_f()
         
         # Submit button to trigger prediction
-        submit_button = st.button("Submit", key="submit-btn", help="Click to predict energy generation")
-        if submit_button:
+        if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
             st.session_state.data = data  # Store data in session state
             st.session_state.submitted = True  # Set state to hide the form and show predictions
             st.experimental_rerun()  # Refresh the page to reflect changes
@@ -155,7 +147,7 @@ def main():
                     st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J", unsafe_allow_html=True)
                     
                     # Add back button to return to input form
-                    if st.button("Back", key="back-btn", help="Return to input form", css_class="back-btn"):
+                    if st.button("Back", key="back-btn", help="Return to input form"):
                         st.session_state.submitted = False
                         st.experimental_rerun()  # Refresh the page to show the input form again
                 except Exception as e:
