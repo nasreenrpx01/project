@@ -34,8 +34,6 @@ st.markdown("""
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 80vh; /* Adjust height to fit within the viewport */
-        width: 80vw; /* Adjust width to fit within the viewport */
         background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
