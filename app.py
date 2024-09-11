@@ -43,7 +43,6 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
         width: 300px; /* Adjust width as needed */
         box-sizing: border-box;
     }
