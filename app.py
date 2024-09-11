@@ -8,6 +8,7 @@ if 'show_prediction' not in st.session_state:
 if 'data' not in st.session_state:
     st.session_state.data = None
 
+
 # Custom CSS for background image and centering
 st.markdown("""
     <style>
@@ -18,17 +19,23 @@ st.markdown("""
         overflow: hidden;
     }
     .main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        position: relative;
         height: 100vh;
         width: 100vw;
         background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U=');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        z-index: 1;
+    }
+    .main-content {
         position: relative;
-        z-index: 1; /* Ensures that the background image stays behind */
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
     }
     .main-container {
         display: flex;
@@ -39,8 +46,6 @@ st.markdown("""
         padding: 20px;
         width: 300px; /* Adjust width as needed */
         box-sizing: border-box;
-        position: relative;
-        z-index: 2; /* Ensures that the content appears above the background image */
     }
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
