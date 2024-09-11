@@ -92,9 +92,9 @@ def show_prediction_box():
     energy_in_joules = prediction[0] * 1000 * 3600
 
     st.markdown('<div class="main"><div class="content"><div class="main-container">', unsafe_allow_html=True)
-    st.header("Prediction")
+    st.header("Prediction\n Power Generated in 3 hours")
     st.write(f"Predicted Power Generation: {prediction[0]:.2f} kW")
-    st.write(f"Energy Produced: {energy_in_joules:.2f} Joules")
+    st.write(f"Prediced Energy Produced: {energy_in_joules:.2f} Joules")
 
     if st.button("Back to Input Form", key="back-btn"):
         st.session_state.show_prediction = False
