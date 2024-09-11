@@ -37,7 +37,7 @@ st.markdown("""
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         position: relative;
         transform: translate(-50%, -50%);
-        z-index: 1; /* Ensure it appears above the background */
+        
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
