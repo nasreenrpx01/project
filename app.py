@@ -19,6 +19,7 @@ st.markdown("""
         background-attachment: fixed;
         margin: 0;
         padding: 0;
+        font-family: Arial, sans-serif;
     }
     .main-container {
         display: flex;
@@ -27,21 +28,24 @@ st.markdown("""
         align-items: center;
         height: 100vh; /* Full height of the screen */
         padding: 20px;
-        margin: 0;
-        background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         max-width: 500px; /* Restrict width of form and prediction box */
         width: 100%;
-        position: relative;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
         color: white;
         border: none;
-        padding: 8px 16px;
+        padding: 10px 20px;
         text-align: center;
-        font-size: 14px;
+        font-size: 16px;
         margin-top: 10px;
         cursor: pointer;
         border-radius: 5px;
@@ -70,7 +74,7 @@ def show_input_form():
         sky_cover = st.selectbox("Sky Cover Level", [0, 1, 2, 3, 4])
 
         # Submit button inside the form
-        submitted = st.form_submit_button("Submit", key="submit-btn")
+        submitted = st.form_submit_button("Submit")
 
         if submitted:
             st.session_state.data = {
@@ -124,4 +128,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
