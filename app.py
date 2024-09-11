@@ -30,6 +30,8 @@ st.markdown("""
         position: relative; /* Establishes a stacking context */
     }
     .main-container {
+        width: 80%;
+        padding: 70px;
         display: flex;
         flex-direction: column;
         background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
