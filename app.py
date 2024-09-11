@@ -20,22 +20,18 @@ st.markdown("""
         margin: 0;
         padding: 0;
     }
-    /* Reduce the space above and below the input form */
     .main-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Take full height of the screen */
+        height: 100vh; /* Full height of the screen */
         padding: 0;
         margin: 0;
-    }
-    .input-form, .prediction-box {
         background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
-        padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        max-width: 500px; /* Restrict width of input form */
+        max-width: 500px; /* Restrict width of form and prediction box */
         width: 100%;
     }
     .submit-btn, .back-btn {
