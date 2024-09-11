@@ -30,14 +30,14 @@ st.markdown("""
         position: relative; /* Establishes a stacking context */
     }
     .main-container {
-        padding: 70px;
         display: flex;
         flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        position: relative;
-        transform: translate(-50%, -50%);
+        padding: 20px;
+        width: 300px; /* Adjust width as needed */
+        box-sizing: border-box;
         
     }
     .submit-btn, .back-btn {
