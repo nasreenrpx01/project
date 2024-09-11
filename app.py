@@ -28,15 +28,6 @@ st.markdown("""
         background-repeat: no-repeat;
         z-index: 1;
     }
-    .main-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-    }
     .main-container {
         display: flex;
         flex-direction: column;
