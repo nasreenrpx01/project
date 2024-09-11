@@ -2,32 +2,26 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-# Initialize session state for showing prediction or input form
+# Initialize session state
 if 'show_prediction' not in st.session_state:
     st.session_state.show_prediction = False
 if 'data' not in st.session_state:
     st.session_state.data = None
 
-# Custom CSS for background image and centering the input and prediction boxes
+# Custom CSS for background image and centering
 st.markdown("""
-     <style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
+    <style>
     .main {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Full viewport height */
-        width: 100vw; /* Full viewport width */
-        background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U=');  /* Example URL */
+        height: 100vh;
+        width: 100vw;
+        background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U=');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        position: relative; /* Establishes a stacking context */
+        position: relative;
     }
     .main-container {
         display: flex;
@@ -35,10 +29,12 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 50px;
         width: 300px; /* Adjust width as needed */
         box-sizing: border-box;
-        
+    }
+    .input-form-container {
+        margin-top: 50px; /* Space above the input form */
+        padding: 20px; /* Padding inside the form container */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
@@ -56,14 +52,11 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-st.markdown(f"<div style='background-image: url('https://wallpapers.com/images/hd/black-and-white-solar-panels-jxkip6hmb8k7l2wx.jpg'); background-size: cover;'>...</div>", unsafe_allow_html=True)
 
-# Function to display input form
 def show_input_form():
-    st.markdown('<div class="main-container">', unsafe_allow_html=True)
+    st.markdown('<div class="main"><div class="input-form-container"><div class="main-container">', unsafe_allow_html=True)
     st.header("Input Parameters")
 
-    # Create a form to collect user inputs
     with st.form(key='input_form'):
         distance_to_solar_noon = st.number_input("Distance to Solar Noon", min_value=-1.56, max_value=2.24, value=0.0, step=0.1)
         temperature = st.number_input("Temperature", min_value=-2.64, max_value=2.76, value=0.0, step=0.1)
@@ -72,12 +65,9 @@ def show_input_form():
         humidity = st.number_input("Humidity", min_value=-2.81, max_value=2.09, value=0.0, step=0.1)
         avg_wind_speed = st.number_input("Average Wind Speed", min_value=-1.61, max_value=2.75, value=0.0, step=0.1)
         avg_pressure = st.number_input("Average Pressure", min_value=-2.81, max_value=3.19, value=0.0, step=0.1)
-
         sky_cover = st.selectbox("Sky Cover Level", [0, 1, 2, 3, 4])
 
-        # Submit button inside the form
         submitted = st.form_submit_button("Submit")
-
         if submitted:
             st.session_state.data = {
                 'distance-to-solar-noon': distance_to_solar_noon,
@@ -93,36 +83,27 @@ def show_input_form():
                 'sky-cover_3': 1 if sky_cover == 3 else 0,
                 'sky-cover_4': 1 if sky_cover == 4 else 0
             }
-            # After submitting, show the prediction box
             st.session_state.show_prediction = True
 
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div></div>', unsafe_allow_html=True)
 
-# Function to display the prediction box
 def show_prediction_box():
-    # Load the pre-trained model
     loaded_model = pickle.load(open('Finalized_model.pkl', 'rb'))
-
-    # Create dataframe with user input
     df = pd.DataFrame(st.session_state.data, index=[0])
-
-    # Make prediction
     prediction = loaded_model.predict(df)
     energy_in_joules = prediction[0] * 1000 * 3600
 
-    st.markdown('<div class="main-container">', unsafe_allow_html=True)
+    st.markdown('<div class="main"><div class="main-container">', unsafe_allow_html=True)
     st.header("Prediction")
     st.write(f"Predicted Power Generation: {prediction[0]:.2f} kW")
     st.write(f"Energy Produced: {energy_in_joules:.2f} Joules")
 
-    # Back button to reset the app state and return to the input form
     if st.button("Back to Input Form", key="back-btn"):
         st.session_state.show_prediction = False
-    st.markdown('</div>', unsafe_allow_html=True)
 
-# Main function to manage app state
+    st.markdown('</div></div>', unsafe_allow_html=True)
+
 def main():
-    # Check whether to show the input form or the prediction box
     if st.session_state.show_prediction:
         show_prediction_box()
     else:
