@@ -8,8 +8,56 @@ if 'show_prediction' not in st.session_state:
 if 'data' not in st.session_state:
     st.session_state.data = None
 
+# Custom CSS for background image
+st.markdown("""
+    <style>
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        background-image: url('https://your-image-url.jpg'); /* Replace with your image URL */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .input-form, .prediction-box {
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .input-form {
+        width: 100%;
+        max-width: 500px;
+    }
+    .prediction-box {
+        width: 100%;
+        max-width: 500px;
+    }
+    .submit-btn, .back-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .submit-btn:hover, .back-btn:hover {
+        background-color: #45a049;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Function to display input form
 def show_input_form():
+    st.markdown('<div class="main"><div class="input-form">', unsafe_allow_html=True)
     st.header("Input Parameters")
     
     with st.form("input_form"):
@@ -25,7 +73,7 @@ def show_input_form():
         sky_cover = st.selectbox("Sky Cover Level", [0, 1, 2, 3, 4])
 
         # Submit button inside the form
-        submitted = st.form_submit_button("Submit")
+        submitted = st.form_submit_button("Submit", key="submit-btn")
 
         # If the form is submitted, save data and switch to prediction mode
         if submitted:
@@ -44,6 +92,7 @@ def show_input_form():
                 'sky-cover_4': 1 if sky_cover == 4 else 0
             }
             st.session_state.show_prediction = True
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
 # Function to display the prediction box
 def show_prediction_box():
@@ -57,13 +106,15 @@ def show_prediction_box():
     prediction = loaded_model.predict(df)
     energy_in_joules = prediction[0] * 1000 * 3600
 
+    st.markdown('<div class="main"><div class="prediction-box">', unsafe_allow_html=True)
     st.header("Prediction")
     st.write(f"Predicted Power Generation: {prediction[0]:.2f} kW")
     st.write(f"Energy Produced: {energy_in_joules:.2f} Joules")
 
     # Back button to reset the app state
-    if st.button("Back to Input Form"):
+    if st.button("Back to Input Form", key="back-btn"):
         st.session_state.show_prediction = False
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
 # Main function to manage app state
 def main():
@@ -75,4 +126,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
