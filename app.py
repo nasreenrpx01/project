@@ -12,7 +12,7 @@ if 'data' not in st.session_state:
 st.markdown("""
     <style>
     body {
-        background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20231004/pngtree-illustrated-3d-render-of-solar-cell-industrial-technology-harnessing-clean-energy-image_13558074.png'); /* Replace with your image URL */
+        background-image: url('https://wallpapers.com/images/hd/black-and-white-solar-panels-jxkip6hmb8k7l2wx.jpg'); /* Replace with your image URL */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -26,13 +26,14 @@ st.markdown("""
         justify-content: center;
         align-items: center;
         height: 100vh; /* Full height of the screen */
-        padding: 0;
+        padding: 20px;
         margin: 0;
         background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         max-width: 500px; /* Restrict width of form and prediction box */
         width: 100%;
+        position: relative;
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
@@ -123,3 +124,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
