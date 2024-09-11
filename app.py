@@ -14,7 +14,7 @@ st.markdown("""
     .main {
         position: relative;
        
-        background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U=');
+        background-image: url('https://wallpapers.com/images/hd/black-and-white-solar-panels-jxkip6hmb8k7l2wx.jpg');
         background-size: cover;
     }
     .content {
