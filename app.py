@@ -118,11 +118,11 @@ def main():
         if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
             st.session_state.data = data  # Store data in session state
             st.session_state.submitted = True  # Set state to hide the form and show predictions
-            st.experimental_rerun()  # Refresh the page to reflect changes
 
     if st.session_state.submitted:
-        # Hide the input form
-        st.markdown('<style>.input-container {display: none;}</style>', unsafe_allow_html=True)
+        # Hide the input form by checking session state
+        if not st.session_state.submitted:
+            st.markdown('<style>.input-container {display: none;}</style>', unsafe_allow_html=True)
         
         # Display prediction results
         st.markdown('<div class="prediction-box">', unsafe_allow_html=True)
@@ -149,9 +149,6 @@ def main():
                     # Add back button to return to input form
                     if st.button("Back", key="back-btn", help="Return to input form"):
                         st.session_state.submitted = False
-                        st.experimental_rerun()  # Refresh the page to show the input form again
-                except Exception as e:
-                    st.error(f"Error in prediction: {e}")
         else:
             st.error(f"Model file '{model_file}' not found. Please upload the model.")
         
