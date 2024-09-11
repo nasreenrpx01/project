@@ -8,7 +8,7 @@ if 'show_prediction' not in st.session_state:
 if 'data' not in st.session_state:
     st.session_state.data = None
 
-# Custom CSS for background image
+# Custom CSS for background image and button styling
 st.markdown("""
     <style>
     .main {
@@ -17,7 +17,7 @@ st.markdown("""
         align-items: center;
         height: 100vh;
         width: 100vw;
-        background-image: url('https://your-image-url.jpg'); /* Replace with your image URL */
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKxkyJh_Uz_1H1YEA93-q7tmHHBNEQAKvFqw&s'); /* Replace with your image URL */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -27,6 +27,7 @@ st.markdown("""
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
     }
     .input-form {
         width: 100%;
@@ -60,7 +61,7 @@ def show_input_form():
     st.markdown('<div class="main"><div class="input-form">', unsafe_allow_html=True)
     st.header("Input Parameters")
 
-    # Create a form
+    # Create a form to collect user inputs
     with st.form(key='input_form'):
         distance_to_solar_noon = st.number_input("Distance to Solar Noon", min_value=-1.56, max_value=2.24, value=0.0, step=0.1)
         temperature = st.number_input("Temperature", min_value=-2.64, max_value=2.76, value=0.0, step=0.1)
@@ -75,7 +76,6 @@ def show_input_form():
         # Submit button inside the form
         submitted = st.form_submit_button("Submit")
 
-        # If the form is submitted, save data and switch to prediction mode
         if submitted:
             st.session_state.data = {
                 'distance-to-solar-noon': distance_to_solar_noon,
@@ -91,7 +91,10 @@ def show_input_form():
                 'sky-cover_3': 1 if sky_cover == 3 else 0,
                 'sky-cover_4': 1 if sky_cover == 4 else 0
             }
+            # After submitting, show the prediction box
             st.session_state.show_prediction = True
+            st.experimental_rerun()
+
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # Function to display the prediction box
@@ -111,9 +114,10 @@ def show_prediction_box():
     st.write(f"Predicted Power Generation: {prediction[0]:.2f} kW")
     st.write(f"Energy Produced: {energy_in_joules:.2f} Joules")
 
-    # Back button to reset the app state
+    # Back button to reset the app state and return to the input form
     if st.button("Back to Input Form", key="back-btn"):
         st.session_state.show_prediction = False
+        st.experimental_rerun()
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # Main function to manage app state
