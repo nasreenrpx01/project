@@ -41,7 +41,7 @@ st.markdown("""
         
     }
     .input-form-container {
-        margin-top: 50px; /* Add space above the input form */
+        margin-top: 80px; /* Add space above the input form */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
