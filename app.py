@@ -27,6 +27,7 @@ st.markdown("""
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        paddig : 20px;
         position: relative; /* Establishes a stacking context */
     }
     .main-container {
