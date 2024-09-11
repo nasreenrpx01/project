@@ -11,40 +11,28 @@ if 'data' not in st.session_state:
 # Custom CSS for background image and centering the input and prediction boxes
 st.markdown("""
     <style>
-     body {
-        height: 100%;
+    body {
+        height: 100vh;
         margin: 0;
-        padding: ;
+        padding: 0;
         overflow: hidden;
-    }
-    .main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh; /* Full viewport height */
-        width: 100vw; /* Full viewport width */
-        background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U=');  /* Example URL */
+        background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U='); /* Background image URL */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        position: relative; /* Establishes a stacking context */
+    }
     .main-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Full height of the screen */
-        padding: 70px;
+        height: 80vh; /* Reduced height to fit within the viewport */
+        width: 80vw; /* Adjust width to fit within the viewport */
         background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        max-width: 500px; /* Restrict width of form and prediction box */
-        width: 80%;
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        padding: 20px;
+        position: relative;
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
