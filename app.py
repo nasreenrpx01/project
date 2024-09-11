@@ -25,7 +25,7 @@ st.markdown("""
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background: none;  /* Remove any additional background color */
+        background: none;
         padding: 0;
     }
     .input-form, .prediction-box {
@@ -92,7 +92,6 @@ def show_input_form():
             }
             # After submitting, show the prediction box
             st.session_state.show_prediction = True
-            st.experimental_rerun()
 
     st.markdown('</div></div>', unsafe_allow_html=True)
 
@@ -116,7 +115,6 @@ def show_prediction_box():
     # Back button to reset the app state and return to the input form
     if st.button("Back to Input Form", key="back-btn"):
         st.session_state.show_prediction = False
-        st.experimental_rerun()
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # Main function to manage app state
