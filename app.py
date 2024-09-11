@@ -8,24 +8,38 @@ if 'show_prediction' not in st.session_state:
 if 'data' not in st.session_state:
     st.session_state.data = None
 
-
 # Custom CSS for background image and centering
 st.markdown("""
     <style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
     .main {
         position: relative;
         height: 100vh;
         width: 100vw;
         background-image: url('https://media.istockphoto.com/id/1394023633/photo/businessman-holding-a-bright-light-bulb-concept-of-ideas-for-presenting-new-ideas-great.jpg?s=612x612&w=0&k=20&c=fzn1kyi4tGChEB831rg-MvZYNBuFlmWP84zSHdhvl9U=');
         background-size: cover;
+        background-position: center;
         background-repeat: no-repeat;
         z-index: 1;
+    }
+    .content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+    .main-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px; /* Adjust width as needed */
+        box-sizing: border-box;
+    }
+    .input-form-container {
+        margin-top: 50px; /* Space above the input form */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
@@ -45,7 +59,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def show_input_form():
-    st.markdown('<div class="main"><div class="input-form-container"><div class="main-container">', unsafe_allow_html=True)
+    st.markdown('<div class="main"><div class="content"><div class="main-container">', unsafe_allow_html=True)
     st.header("Input Parameters")
 
     with st.form(key='input_form'):
@@ -76,7 +90,7 @@ def show_input_form():
             }
             st.session_state.show_prediction = True
 
-    st.markdown('</div></div></div>', unsafe_allow_html=True)
+    st.markdown('</div></div></div></div>', unsafe_allow_html=True)
 
 def show_prediction_box():
     loaded_model = pickle.load(open('Finalized_model.pkl', 'rb'))
@@ -84,7 +98,7 @@ def show_prediction_box():
     prediction = loaded_model.predict(df)
     energy_in_joules = prediction[0] * 1000 * 3600
 
-    st.markdown('<div class="main"><div class="main-container">', unsafe_allow_html=True)
+    st.markdown('<div class="main"><div class="content"><div class="main-container">', unsafe_allow_html=True)
     st.header("Prediction")
     st.write(f"Predicted Power Generation: {prediction[0]:.2f} kW")
     st.write(f"Energy Produced: {energy_in_joules:.2f} Joules")
@@ -92,7 +106,7 @@ def show_prediction_box():
     if st.button("Back to Input Form", key="back-btn"):
         st.session_state.show_prediction = False
 
-    st.markdown('</div></div>', unsafe_allow_html=True)
+    st.markdown('</div></div></div></div>', unsafe_allow_html=True)
 
 def main():
     if st.session_state.show_prediction:
