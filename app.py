@@ -8,7 +8,7 @@ if 'show_prediction' not in st.session_state:
 if 'data' not in st.session_state:
     st.session_state.data = None
 
-# Custom CSS for background image and styling of input and prediction boxes
+# Custom CSS for background image and centering the input and prediction boxes
 st.markdown("""
     <style>
     body {
@@ -17,6 +17,8 @@ st.markdown("""
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        margin: 0;
+        padding: 0;
     }
     .main {
         display: flex;
@@ -24,26 +26,26 @@ st.markdown("""
         align-items: center;
         height: 100vh;
         background: none;  /* Remove any additional background color */
+        padding: 0;
     }
     .input-form, .prediction-box {
-        background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for the form */
-        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.8); /* Transparent background for the form */
+        padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        width: 70%;
-        max-width: 100px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
         color: white;
         border: none;
-        padding: 10px 20px;
+        padding: 8px 16px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
+        font-size: 14px;
+        margin-top: 10px;
         cursor: pointer;
         border-radius: 5px;
     }
