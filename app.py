@@ -60,8 +60,8 @@ def show_input_form():
     st.markdown('<div class="main"><div class="input-form">', unsafe_allow_html=True)
     st.header("Input Parameters")
     
+    # Create a form
     with st.form("input_form"):
-        # Create input fields
         distance_to_solar_noon = st.number_input("Distance to Solar Noon", min_value=-1.56, max_value=2.24, value=0.0, step=0.1)
         temperature = st.number_input("Temperature", min_value=-2.64, max_value=2.76, value=0.0, step=0.1)
         wind_direction = st.number_input("Wind Direction", min_value=-3.57, max_value=2.59, value=0.0, step=0.1)
