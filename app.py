@@ -60,8 +60,18 @@ st.markdown("""
     .submit-btn:hover {
         background-color: #FF6347; /* Lighter orange on hover */
     }
-    .hidden {
-        display: none;
+    .back-btn {
+        background-color: #1E90FF; /* Vibrant blue back button */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 8px;
+        margin-top: 15px;
+    }
+    .back-btn:hover {
+        background-color: #4682B4; /* Lighter blue on hover */
     }
     </style>
 """, unsafe_allow_html=True)
@@ -112,9 +122,11 @@ def main():
         data = user_input_f()
         
         # Submit button to trigger prediction
-        if st.button("Submit", key="submit-btn", help="Click to predict energy generation"):
+        submit_button = st.button("Submit", key="submit-btn", help="Click to predict energy generation")
+        if submit_button:
             st.session_state.data = data  # Store data in session state
             st.session_state.submitted = True  # Set state to hide the form and show predictions
+            st.experimental_rerun()  # Refresh the page to reflect changes
 
     if st.session_state.submitted:
         # Hide the input form
@@ -141,6 +153,11 @@ def main():
                     # Display the prediction result with vibrant colors
                     st.markdown(f"<strong>Predicted Power Generation:</strong> {prediction[0]:.2f} kW", unsafe_allow_html=True)
                     st.markdown(f"<strong>Energy Produced:</strong> {energy_in_joules:.2f} J", unsafe_allow_html=True)
+                    
+                    # Add back button to return to input form
+                    if st.button("Back", key="back-btn", help="Return to input form", css_class="back-btn"):
+                        st.session_state.submitted = False
+                        st.experimental_rerun()  # Refresh the page to show the input form again
                 except Exception as e:
                     st.error(f"Error in prediction: {e}")
         else:
