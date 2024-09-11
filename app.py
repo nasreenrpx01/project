@@ -10,11 +10,11 @@ if 'data' not in st.session_state:
 
 # Custom CSS for background image and centering the input and prediction boxes
 st.markdown("""
-    <style>
- html, body {
+     <style>
+    html, body {
         height: 100%;
         margin: 0;
-        padding: ;
+        padding: 0;
         overflow: hidden;
     }
     .main {
@@ -45,6 +45,17 @@ st.markdown("""
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1; /* Ensure it appears above the background */
+    }
+    .main-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        z-index: -1; /* Ensure it appears below the main container */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
