@@ -24,9 +24,9 @@ st.markdown("""
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        background: none;
+        height: 100vh; /* Full screen height */
         padding: 0;
+        margin: 0;
     }
     .input-form, .prediction-box {
         background-color: rgba(255, 255, 255, 0.8); /* Transparent background for the form */
