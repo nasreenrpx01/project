@@ -149,6 +149,8 @@ def main():
                     # Add back button to return to input form
                     if st.button("Back", key="back-btn", help="Return to input form"):
                         st.session_state.submitted = False
+                except Exception as e:
+                    st.error(f"Error in prediction: {e}")
         else:
             st.error(f"Model file '{model_file}' not found. Please upload the model.")
         
