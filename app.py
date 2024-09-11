@@ -38,8 +38,6 @@ st.markdown("""
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         position: absolute;
-        top: 50%;
-        left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1; /* Ensure it appears above the background */
     }
