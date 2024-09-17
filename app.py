@@ -34,9 +34,9 @@ st.markdown("""
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
     }
-     .main-container input {
-        color: white; /* Change input text color to white */
-        background-color: #333; /* Optional: change background to ensure contrast */
+   .main-container input {
+        color: white !important; /* Change input text color to white */
+        background-color: #333 !important; /* Optional: change background to ensure contrast */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
