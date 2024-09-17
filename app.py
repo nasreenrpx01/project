@@ -33,6 +33,7 @@ st.markdown("""
     }
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
+        background-color: #FFFFFF;
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
