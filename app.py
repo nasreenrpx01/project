@@ -34,7 +34,9 @@ st.markdown("""
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
     }
-   .main-container input {
+    /* Increased specificity */
+    .main-container .stNumberInput input,
+    .main-container .stSelectbox select {
         color: white !important; /* Change input text color to white */
         background-color: #333 !important; /* Optional: change background to ensure contrast */
     }
@@ -54,6 +56,7 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 
 def show_input_form():
