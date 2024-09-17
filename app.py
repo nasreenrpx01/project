@@ -33,13 +33,6 @@ st.markdown("""
     }
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
-        color: white;
-    }
-    /* Increased specificity */
-    .main-container .stNumberInput input,
-    .main-container .stSelectbox select {
-        color: white !important; /* Change input text color to white */
-        background-color: #333 !important; /* Optional: change background to ensure contrast */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
