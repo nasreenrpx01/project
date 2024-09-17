@@ -9,11 +9,10 @@ if 'data' not in st.session_state:
     st.session_state.data = None
 
 # Custom CSS for background image and centering
-st.markdown("""
+t.markdown("""
     <style>
     .main {
         position: relative;
-       
         background-image: url('https://wallpapers.com/images/hd/black-and-white-solar-panels-jxkip6hmb8k7l2wx.jpg');
         background-size: cover;
     }
@@ -35,6 +34,9 @@ st.markdown("""
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
     }
+    input {
+        color: white; /* Change input text to white */
+    }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
         color: white;
@@ -51,6 +53,7 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 def show_input_form():
     st.markdown('<div class="main"><div class="content"><div class="main-container">', unsafe_allow_html=True)
