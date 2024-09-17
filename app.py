@@ -29,13 +29,10 @@ st.markdown("""
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
-        background-color: #FFFFFF;
+        color: white;
     }
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
-    }
-    input {
-        color: white; /* Change input text to white */
     }
     .submit-btn, .back-btn {
         background-color: #4CAF50;
