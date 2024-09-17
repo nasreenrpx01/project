@@ -33,6 +33,7 @@ st.markdown("""
     }
     .input-form-container {
         margin-top: 50px; /* Space above the input form */
+        color: white;
     }
     /* Increased specificity */
     .main-container .stNumberInput input,
