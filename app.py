@@ -9,7 +9,7 @@ if 'data' not in st.session_state:
     st.session_state.data = None
 
 # Custom CSS for background image and centering
-t.markdown("""
+st.markdown("""
     <style>
     .main {
         position: relative;
