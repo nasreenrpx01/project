@@ -13,7 +13,7 @@ st.markdown("""
     <style>
     .main {
         position: relative;
-        background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20231004/pngtree-illustrated-3d-render-of-solar-cell-industrial-technology-harnessing-clean-energy-image_13558074.png');
+        background-image: url('https://i.pinimg.com/originals/74/91/44/749144aead3fd6ed4bc7892b1bad8498.jpg');
         background-size: cover;
     }
     .content {
