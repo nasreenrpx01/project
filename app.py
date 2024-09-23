@@ -13,7 +13,7 @@ st.markdown("""
     <style>
     .main {
         position: relative;
-        background-image: url('https://wallpapers.com/images/hd/black-and-white-solar-panels-jxkip6hmb8k7l2wx.jpg');
+        background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20231004/pngtree-illustrated-3d-render-of-solar-cell-industrial-technology-harnessing-clean-energy-image_13558074.png');
         background-size: cover;
     }
     .content {
