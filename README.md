@@ -101,7 +101,7 @@ The application features:
 We’d love to hear your feedback and collaborate on exciting projects!  
 - **Name**: Nasreen Fatima  
 - **Email**: [nasreenrpx@gmail.com](mailto:nasreenrpx@gmail.com)  
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/nasreen-fatima)  
+- **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/in/nasreen-fatima)  
 
 ---
 
